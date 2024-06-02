@@ -1,0 +1,100 @@
+﻿@page "/careplans"
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Care App</PageTitle>
+
+<h1>Care Plans</h1>
+
+@if (careplans == null || clients == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="mb-3">
+        <select @onchange="FilterByClient">
+            <option value="">All Clients</option>
+            @foreach (var client in clients)
+            {
+                <option value="@client.Id">@client.FirstName @client.LastName</option>
+            }
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="row">
+            @foreach (var careplan in careplans.Where(cp => string.IsNullOrEmpty(selectedClientId) || cp.ClientId == selectedClientId))
+            {
+                var client = clients.FirstOrDefault(c => c.Id == careplan.ClientId);
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@careplan.DisplayName</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Client: @client?.FirstName @client?.LastName</h6>
+                            <p class="card-text">
+                                Goals:
+                                @foreach (var goal in careplan.Goals)
+                                {
+                                    <div>@goal.DisplayName</div>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private string? authToken = "";
+    private CarePlan[]? careplans;
+    private Client[]? clients;
+    private bool showAlert = false;
+    private string? selectedClientId;
+
+    private void FilterByClient(ChangeEventArgs e)
+    {
+        selectedClientId = e.Value.ToString();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        authToken = (await localStorage.GetItemAsync<string>("authToken"))?.Trim('"');
+
+        if (string.IsNullOrEmpty(authToken))
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        Http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", authToken);
+        careplans = await Http.GetFromJsonAsync<CarePlan[]>($"/Employee/GetCarePlans");
+        clients = await Http.GetFromJsonAsync<Client[]>($"/Employee/GetClients");
+    }
+
+    public class CarePlan
+    {
+        public required string Id { get; set; }
+        public required string DisplayName { get; set; }
+        public required string ClientId { get; set; }
+        public List<Goal> Goals { get; set; } = [];
+    }
+
+    public class Goal
+    {
+        public required string DisplayName { get; set; }
+        public required string GoalId { get; set; }
+    }
+
+    public class Client
+    {
+        public required string FirstName { get; set; }
+        public required string LastName { get; set; }
+        public required DateTime BirthDate { get; set; }
+        public required string Gender { get; set; }
+        public required string Id { get; set; }
+    }
+}

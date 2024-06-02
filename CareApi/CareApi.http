@@ -1,0 +1,6 @@
+@CareApi_HostAddress = https://localhost:4041
+
+GET {{CareApi_HostAddress}}/Employee/GetCarePlans/
+Accept: application/json
+
+###

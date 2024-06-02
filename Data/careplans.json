@@ -1,6 +1,57 @@
-[{"Id":"1","DisplayName":"Careplan Paul Driver, 2019","ClientId":"1","Goals":[{"DisplayName":"Drive slower","GoalId":"1"},{"DisplayName":"Work on focus","GoalId":"2"}]},
-{"Id":"1","DisplayName":"Careplan","ClientId":"2","Goals":[{"DisplayName":"Get back sense of direction","GoalId":"1"},{"DisplayName":"Sleep enough","GoalId":"2"},{"DisplayName":"Learn new languages","GoalId":"2"}]},
-{"Id":"2","DisplayName":"Omaha plan","ClientId":"2","Goals":[{"DisplayName":"Bring more structure in life","GoalId":"1"}]},
-{"Id":"1","DisplayName":"Careplan","ClientId":"3","Goals":[{"DisplayName":"Exercise enough","GoalId":"1"}]},{"Id":"1","DisplayName":"Careplan","ClientId":"4","Goals":[{"DisplayName":"Limit amount of food","GoalId":"1"}]},
-{"Id":"2","DisplayName":"Careplan 2019","ClientId":"5","Goals":[{"DisplayName":"Style hair every morning","GoalId":"1"},{"DisplayName":"Contact mother weekly","GoalId":"2"}]},
-{"Id":"1","DisplayName":"Careplan 2018","ClientId":"5","Goals":[{"DisplayName":"Style hair every morning","GoalId":"1"},{"DisplayName":"Contact mother weekly","GoalId":"2"}]}]
+[
+  {
+    "Id": "1",
+    "DisplayName": "Careplan Paul Driver, 2019",
+    "ClientId": "1",
+    "Goals": [
+      { "DisplayName": "Drive slower", "GoalId": "1" },
+      { "DisplayName": "Work on focus", "GoalId": "2" }
+    ]
+  },
+  {
+    "Id": "1",
+    "DisplayName": "Careplan",
+    "ClientId": "2",
+    "Goals": [
+      { "DisplayName": "Get back sense of direction", "GoalId": "1" },
+      { "DisplayName": "Sleep enough", "GoalId": "2" },
+      { "DisplayName": "Learn new languages", "GoalId": "2" }
+    ]
+  },
+  {
+    "Id": "2",
+    "DisplayName": "Omaha plan",
+    "ClientId": "2",
+    "Goals": [{ "DisplayName": "Bring more structure in life", "GoalId": "1" }]
+  },
+  {
+    "Id": "1",
+    "DisplayName": "Careplan",
+    "ClientId": "3",
+    "Goals": [{ "DisplayName": "Exercise enough", "GoalId": "1" }]
+  },
+  {
+    "Id": "1",
+    "DisplayName": "Careplan",
+    "ClientId": "4",
+    "Goals": [{ "DisplayName": "Limit amount of food", "GoalId": "1" }]
+  },
+  {
+    "Id": "2",
+    "DisplayName": "Careplan 2019",
+    "ClientId": "5",
+    "Goals": [
+      { "DisplayName": "Style hair every morning", "GoalId": "1" },
+      { "DisplayName": "Contact mother weekly", "GoalId": "2" }
+    ]
+  },
+  {
+    "Id": "1",
+    "DisplayName": "Careplan 2018",
+    "ClientId": "5",
+    "Goals": [
+      { "DisplayName": "Style hair every morning", "GoalId": "1" },
+      { "DisplayName": "Contact mother weekly", "GoalId": "2" }
+    ]
+  }
+]

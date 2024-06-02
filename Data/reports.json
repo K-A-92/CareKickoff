@@ -1,11 +1,101 @@
-[{"Subject":"High bloodpressure","Text":"Client seems to have excessive lifestyle, causing high bloodpressure. Adviced to stop driving so fast.","HasPriority":false,"CarePlanGoalId":"","ClientId":"1","CreatedBy":"Sander","CreatedAt":"2019-08-12T15:22:00"},
-{"Subject":"Short attention span","Text":"Client only pays attention for 9.8 seconds","HasPriority":false,"CarePlanGoalId":"2","ClientId":"1","CreatedBy":"Sander","CreatedAt":"2019-08-11T14:00:00"},
-{"Subject":"Burn marks","Text":"Mr. Driver burnt his hand cooking dinner.","HasPriority":true,"CarePlanGoalId":"","ClientId":"1","CreatedBy":"Sander","CreatedAt":"2019-08-10T08:40:00"},
-{"Subject":"Trouble walking","Text":"Ms. Jonahson has trouble walking for more than a few minutes at a time","HasPriority":false,"CarePlanGoalId":"","ClientId":"2","CreatedBy":"Peter","CreatedAt":"2019-08-12T15:00:00"},
-{"Subject":"Random language loss","Text":"Client sometimes seems lost trying to translate her words, and she can only speak Japanese for a few minutes","HasPriority":false,"CarePlanGoalId":"","ClientId":"2","CreatedBy":"Sander","CreatedAt":"2019-08-11T12:00:00"},
-{"Subject":"Quiet day","Text":"Everything went well today","HasPriority":false,"CarePlanGoalId":"","ClientId":"2","CreatedBy":"Peter","CreatedAt":"2019-08-08T17:30:00"},
-{"Subject":"Quiet day","Text":"Nothing special happened","HasPriority":false,"CarePlanGoalId":"","ClientId":"3","CreatedBy":"Peter","CreatedAt":"2019-08-12T16:50:00"},
-{"Subject":"Physical exercise","Text":"Client tried surfing today to regain mobility, went well","HasPriority":false,"CarePlanGoalId":"1","ClientId":"3","CreatedBy":"Peter","CreatedAt":"2019-08-11T15:00:00"},
-{"Subject":"Sprained ankle","Text":"Ms. Albo sprained her ankle","HasPriority":false,"CarePlanGoalId":"1","ClientId":"3","CreatedBy":"Chris","CreatedAt":"2019-08-04T11:19:00"},
-{"Subject":"Too much protein","Text":"Mr. Dohnson exceeded his agreed limit of maximum 5 protein shakes a day","HasPriority":false,"CarePlanGoalId":"1","ClientId":"4","CreatedBy":"Sander","CreatedAt":"2019-08-12T15:22:00"},
-{"Subject":"Couldn't get out of bed","Text":"Client refused to get up and stayed in bed all day","HasPriority":false,"CarePlanGoalId":"","ClientId":"4","CreatedBy":"Remco","CreatedAt":"2019-08-10T22:45:00"}]
+[
+  {
+    "Subject": "High bloodpressure",
+    "Text": "Client seems to have excessive lifestyle, causing high bloodpressure. Adviced to stop driving so fast.",
+    "HasPriority": false,
+    "CarePlanGoalId": "",
+    "ClientId": "1",
+    "CreatedBy": "Sander",
+    "CreatedAt": "2019-08-12T15:22:00"
+  },
+  {
+    "Subject": "Short attention span",
+    "Text": "Client only pays attention for 9.8 seconds",
+    "HasPriority": false,
+    "CarePlanGoalId": "2",
+    "ClientId": "1",
+    "CreatedBy": "Sander",
+    "CreatedAt": "2019-08-11T14:00:00"
+  },
+  {
+    "Subject": "Burn marks",
+    "Text": "Mr. Driver burnt his hand cooking dinner.",
+    "HasPriority": true,
+    "CarePlanGoalId": "",
+    "ClientId": "1",
+    "CreatedBy": "Sander",
+    "CreatedAt": "2019-08-10T08:40:00"
+  },
+  {
+    "Subject": "Trouble walking",
+    "Text": "Ms. Jonahson has trouble walking for more than a few minutes at a time",
+    "HasPriority": false,
+    "CarePlanGoalId": "",
+    "ClientId": "2",
+    "CreatedBy": "Peter",
+    "CreatedAt": "2019-08-12T15:00:00"
+  },
+  {
+    "Subject": "Random language loss",
+    "Text": "Client sometimes seems lost trying to translate her words, and she can only speak Japanese for a few minutes",
+    "HasPriority": false,
+    "CarePlanGoalId": "",
+    "ClientId": "2",
+    "CreatedBy": "Sander",
+    "CreatedAt": "2019-08-11T12:00:00"
+  },
+  {
+    "Subject": "Quiet day",
+    "Text": "Everything went well today",
+    "HasPriority": false,
+    "CarePlanGoalId": "",
+    "ClientId": "2",
+    "CreatedBy": "Peter",
+    "CreatedAt": "2019-08-08T17:30:00"
+  },
+  {
+    "Subject": "Quiet day",
+    "Text": "Nothing special happened",
+    "HasPriority": false,
+    "CarePlanGoalId": "",
+    "ClientId": "3",
+    "CreatedBy": "Peter",
+    "CreatedAt": "2019-08-12T16:50:00"
+  },
+  {
+    "Subject": "Physical exercise",
+    "Text": "Client tried surfing today to regain mobility, went well",
+    "HasPriority": false,
+    "CarePlanGoalId": "1",
+    "ClientId": "3",
+    "CreatedBy": "Peter",
+    "CreatedAt": "2019-08-11T15:00:00"
+  },
+  {
+    "Subject": "Sprained ankle",
+    "Text": "Ms. Albo sprained her ankle",
+    "HasPriority": false,
+    "CarePlanGoalId": "1",
+    "ClientId": "3",
+    "CreatedBy": "Chris",
+    "CreatedAt": "2019-08-04T11:19:00"
+  },
+  {
+    "Subject": "Too much protein",
+    "Text": "Mr. Dohnson exceeded his agreed limit of maximum 5 protein shakes a day",
+    "HasPriority": false,
+    "CarePlanGoalId": "1",
+    "ClientId": "4",
+    "CreatedBy": "Sander",
+    "CreatedAt": "2019-08-12T15:22:00"
+  },
+  {
+    "Subject": "Couldn't get out of bed",
+    "Text": "Client refused to get up and stayed in bed all day",
+    "HasPriority": false,
+    "CarePlanGoalId": "",
+    "ClientId": "4",
+    "CreatedBy": "Remco",
+    "CreatedAt": "2019-08-10T22:45:00"
+  }
+]
