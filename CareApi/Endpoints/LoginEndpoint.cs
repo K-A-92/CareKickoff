@@ -26,7 +26,6 @@ public static class LoginEndpoint
                 return Results.Ok(hashedToken);
             })
             .Produces<string>()
-            .Produces<string>(400)
             .ProducesProblem(424)
             .WithOpenApi(op => new OpenApiOperation(op)
             {

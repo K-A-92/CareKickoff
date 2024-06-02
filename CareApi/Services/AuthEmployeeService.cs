@@ -10,13 +10,13 @@ public class AuthEmployeeService(HashingService hashingService, IEmployeeReposit
 
     public EmployeeModel? ValidateToken(HttpContext httpContext)
     {
-        //TODO add time component (expiration) to token.
+        //TODO add time component to token (expiration).
         string authHeader = httpContext.Request.Headers.Authorization!;
         if (authHeader == null || !authHeader.StartsWith("Token "))
         {
             return null;
         }
-        var token = authHeader.Substring("Token ".Length).Trim();
+        var token = authHeader["Token ".Length..].Trim();
 
         var employees = employeeRepository.GetEmployees();
         var validEmployee = employees.FirstOrDefault(e => hashingService.HashWithSecretKey(e.EmployeeId) == token);
