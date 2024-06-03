@@ -20,7 +20,7 @@ public static class EmployeeEndpoints
         employeePath
             .MapGet("/GetClients", (HttpContext httpContext) =>
             {
-                var validEmployee = authEmployeeService.ValidateToken(httpContext);
+                var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
                 if (validEmployee == null)
                 {
                     return Results.Unauthorized();
@@ -41,7 +41,7 @@ public static class EmployeeEndpoints
         employeePath
             .MapGet("/GetCarePlans", (HttpContext httpContext) =>
             {
-                var validEmployee = authEmployeeService.ValidateToken(httpContext);
+                var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
                 if (validEmployee == null)
                 {
                     return Results.Unauthorized();
@@ -65,7 +65,7 @@ public static class EmployeeEndpoints
         employeePath
             .MapGet("/GetReports", (HttpContext httpContext) =>
             {
-                var validEmployee = authEmployeeService.ValidateToken(httpContext);
+                var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
                 if (validEmployee == null)
                 {
                     return Results.Unauthorized();

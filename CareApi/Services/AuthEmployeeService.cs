@@ -8,7 +8,7 @@ public class AuthEmployeeService(HashingService hashingService, IEmployeeReposit
     private readonly HashingService hashingService = hashingService;
     private readonly IEmployeeRepository employeeRepository = employeeRepository;
 
-    public EmployeeModel? ValidateToken(HttpContext httpContext)
+    public EmployeeModel? GetValidEmployee(HttpContext httpContext)
     {
         //TODO add time component to token (expiration).
         string authHeader = httpContext.Request.Headers.Authorization!;
@@ -20,6 +20,11 @@ public class AuthEmployeeService(HashingService hashingService, IEmployeeReposit
 
         var employees = employeeRepository.GetEmployees();
         var validEmployee = employees.FirstOrDefault(e => hashingService.HashWithSecretKey(e.EmployeeId) == token);
+
+        if (validEmployee == null)
+        {
+            return null;
+        }
 
         return validEmployee;
     }

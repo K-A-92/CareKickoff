@@ -1,4 +1,5 @@
 ﻿@page "/careplans"
+@using System.Net
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 @inject HttpClient Http
 @inject NavigationManager Navigation
@@ -71,8 +72,15 @@ else
         }
 
         Http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", authToken);
-        careplans = await Http.GetFromJsonAsync<CarePlan[]>($"/Employee/GetCarePlans");
-        clients = await Http.GetFromJsonAsync<Client[]>($"/Employee/GetClients");
+        try
+        {
+            careplans = await Http.GetFromJsonAsync<CarePlan[]>($"/Employee/GetCarePlans");
+            clients = await Http.GetFromJsonAsync<Client[]>($"/Employee/GetClients");
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            Navigation.NavigateTo("/login");
+        }
     }
 
     public class CarePlan

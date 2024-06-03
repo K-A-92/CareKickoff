@@ -1,4 +1,5 @@
 ﻿@page "/reports"
+@using System.Net
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 @inject HttpClient Http
 @inject NavigationManager Navigation
@@ -56,8 +57,15 @@ else
         }
 
         Http.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Token", authToken);
-        reports = await Http.GetFromJsonAsync<Report[]>($"/Employee/GetReports");
-        clients = await Http.GetFromJsonAsync<Client[]>($"/Employee/GetClients");
+        try
+        {
+            reports = await Http.GetFromJsonAsync<Report[]>($"/Employee/GetReports");
+            clients = await Http.GetFromJsonAsync<Client[]>($"/Employee/GetClients");
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            Navigation.NavigateTo("/login");
+        }
     }
 
     public class Client

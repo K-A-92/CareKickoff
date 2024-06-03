@@ -1,21 +1,18 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace CareApi.Services;
-
-public class HashingService
+namespace CareApi.Services
 {
-    private readonly string _secretKey;
-
-    public HashingService()
+    public class HashingService(IConfiguration configuration)
     {
-        _secretKey = Environment.GetEnvironmentVariable("SECRET_KEY") ?? "DefaultSecret";
-    }
+        private readonly string secretKey = configuration.GetValue<string>("SECRET_KEY") ?? "DefaultSecret";
 
-    public string HashWithSecretKey(string input)
-    {
-        using var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(_secretKey));
-        var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(input));
-        return Convert.ToBase64String(hash);
+
+        public string HashWithSecretKey(string input)
+        {
+            using var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(secretKey));
+            var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(input));
+            return Convert.ToBase64String(hash);
+        }
     }
 }
