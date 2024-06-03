@@ -43,15 +43,8 @@ public class Program
         app.UseHttpsRedirection();
         app.UseCors("AllowAllOrigin");
 
-        var authService = app.Services.GetRequiredService<AuthEmployeeService>();
-        var clientRepository = app.Services.GetRequiredService<IClientRepository>();
-        var carePlanRepository = app.Services.GetRequiredService<ICarePlanRepository>();
-        var reportRepository = app.Services.GetRequiredService<IReportRepository>();
-        app.AddEmployeeEndpoints(authService, clientRepository, carePlanRepository, reportRepository);
-
-        var hashingService = app.Services.GetRequiredService<HashingService>();
-        var authRepository = app.Services.GetRequiredService<IAuthRepository>();
-        app.AddLoginEndpoint(hashingService, authRepository);
+        app.AddEmployeeEndpoints();        
+        app.AddLoginEndpoint();
 
         app.Run();
     }

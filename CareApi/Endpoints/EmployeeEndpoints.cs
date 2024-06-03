@@ -9,27 +9,12 @@ public static class EmployeeEndpoints
 {
     // TODO move authorization to middleware
     // TODO move "business logic" to own service
-    public static void AddEmployeeEndpoints(this IEndpointRouteBuilder app,
-        AuthEmployeeService authEmployeeService,
-        IClientRepository clientRepository,
-        ICarePlanRepository carePlanRepository,
-        IReportRepository reportRepository)
+    public static void AddEmployeeEndpoints(this IEndpointRouteBuilder app)
     {
         var employeePath = app.MapGroup("/Employee");
 
         employeePath
-            .MapGet("/GetClients", (HttpContext httpContext) =>
-            {
-                var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
-                if (validEmployee == null)
-                {
-                    return Results.Unauthorized();
-                }
-
-                var authorizedClients = clientRepository.GetClients().Where(c => validEmployee.AuthorizedClients.Contains(c.Id)).ToArray();
-
-                return Results.Ok(authorizedClients);
-            })
+            .MapGet("/GetClients", GetClients)
             .Produces<IEnumerable<ClientModel>>()
             .ProducesProblem(424)
             .WithOpenApi(op => new OpenApiOperation(op)
@@ -39,21 +24,7 @@ public static class EmployeeEndpoints
             });
 
         employeePath
-            .MapGet("/GetCarePlans", (HttpContext httpContext) =>
-            {
-                var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
-                if (validEmployee == null)
-                {
-                    return Results.Unauthorized();
-                }
-                var clients = clientRepository.GetClients();
-                var authorizedClientsIds = clients!.Where(c => validEmployee.AuthorizedClients.Contains(c.Id)).Select(c => c.Id);
-
-                var carePlans = carePlanRepository.GetCarePlans();
-                var applicableCarePlans = carePlans!.Where(cp => authorizedClientsIds.Contains(cp.ClientId));
-
-                return Results.Ok(applicableCarePlans);
-            })
+            .MapGet("/GetCarePlans", GetCarePlans)
             .Produces<IEnumerable<CarePlanModel>>()
             .ProducesProblem(424)
             .WithOpenApi(op => new OpenApiOperation(op)
@@ -63,23 +34,7 @@ public static class EmployeeEndpoints
             });
 
         employeePath
-            .MapGet("/GetReports", (HttpContext httpContext) =>
-            {
-                var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
-                if (validEmployee == null)
-                {
-                    return Results.Unauthorized();
-                }
-
-                var carePlans = carePlanRepository.GetCarePlans();
-                var clients = clientRepository.GetClients();
-                var reports = reportRepository.GetReports();
-
-                var authorizedClientsIds = clients!.Where(c => validEmployee.AuthorizedClients.Contains(c.Id)).Select(c => c.Id);
-                var applicableReports = reports!.Where(r => authorizedClientsIds.Contains(r.ClientId));
-
-                return Results.Ok(applicableReports);
-            })
+            .MapGet("/GetReports", GetReports)
             .Produces<IEnumerable<ReportModel>>()
             .ProducesProblem(424)
             .WithOpenApi(op => new OpenApiOperation(op)
@@ -87,5 +42,59 @@ public static class EmployeeEndpoints
                 Summary = "Gets Reports",
                 Description = ""
             });
+    }
+
+    public static IResult GetClients(
+        HttpContext httpContext,
+        AuthEmployeeService authEmployeeService,
+        IClientRepository clientRepository)
+    {
+        var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
+        if (validEmployee == null)
+        {
+            return Results.Unauthorized();
+        }
+        var authorizedClients = clientRepository.GetClients().Where(c => validEmployee.AuthorizedClients.Contains(c.Id)).ToArray();
+        return Results.Ok(authorizedClients);
+    }
+
+    public static IResult GetCarePlans(
+        HttpContext httpContext,
+        AuthEmployeeService authEmployeeService,
+        IClientRepository clientRepository,
+        ICarePlanRepository carePlanRepository)
+    {
+        var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
+        if (validEmployee == null)
+        {
+            return Results.Unauthorized();
+        }
+        var clients = clientRepository.GetClients();
+        var authorizedClientsIds = clients!.Where(c => validEmployee.AuthorizedClients.Contains(c.Id)).Select(c => c.Id);
+
+        var carePlans = carePlanRepository.GetCarePlans();
+        var applicableCarePlans = carePlans!.Where(cp => authorizedClientsIds.Contains(cp.ClientId));
+
+        return Results.Ok(applicableCarePlans);
+    }
+
+    public static IResult GetReports(
+        HttpContext httpContext,
+        AuthEmployeeService authEmployeeService,
+        IClientRepository clientRepository,
+        IReportRepository reportRepository)
+    {
+        var validEmployee = authEmployeeService.GetValidEmployee(httpContext);
+        if (validEmployee == null)
+        {
+            return Results.Unauthorized();
+        }
+        var clients = clientRepository.GetClients();
+        var authorizedClientsIds = clients!.Where(c => validEmployee.AuthorizedClients.Contains(c.Id)).Select(c => c.Id);
+
+        var reports = reportRepository.GetReports();
+        var applicableReports = reports!.Where(r => authorizedClientsIds.Contains(r.ClientId));
+
+        return Results.Ok(applicableReports);
     }
 }
